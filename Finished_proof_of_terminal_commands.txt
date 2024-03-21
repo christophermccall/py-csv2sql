@@ -1,0 +1,88 @@
+chris@Zipcoders-MacBook-Pro-2 py-csv2sql % /usr/bin/python3 -m venv venv
+chris@Zipcoders-MacBook-Pro-2 py-csv2sql % source venv/bin/activate
+(venv) chris@Zipcoders-MacBook-Pro-2 py-csv2sql % which sqlalchemy
+sqlalchemy not found
+(venv) chris@Zipcoders-MacBook-Pro-2 py-csv2sql % pip3 install sqlalchemy
+Requirement already satisfied: sqlalchemy in ./venv/lib/python3.9/site-packages (2.0.28)
+Requirement already satisfied: typing-extensions>=4.6.0 in ./venv/lib/python3.9/site-packages (from sqlalchemy) (4.10.0)
+WARNING: You are using pip version 21.2.4; however, version 24.0 is available.
+You should consider upgrading via the '/Users/chris/pyprojects/py-csv2sql/venv/bin/python3 -m pip install --upgrade pip' command.
+(venv) chris@Zipcoders-MacBook-Pro-2 py-csv2sql % pip3 install mysqlclient
+Collecting mysqlclient
+  Using cached mysqlclient-2.2.4-cp39-cp39-macosx_10_9_universal2.whl
+Installing collected packages: mysqlclient
+Successfully installed mysqlclient-2.2.4
+WARNING: You are using pip version 21.2.4; however, version 24.0 is available.
+You should consider upgrading via the '/Users/chris/pyprojects/py-csv2sql/venv/bin/python3 -m pip install --upgrade pip' command.
+(venv) chris@Zipcoders-MacBook-Pro-2 py-csv2sql % mysql -u chrsm -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'chrsm'@'localhost' (using password: YES)
+(venv) chris@Zipcoders-MacBook-Pro-2 py-csv2sql % mysql -u chrism -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use zipcode
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables
+    -> ;
++--------------------+
+| Tables_in_zipcode  |
++--------------------+
+| assignment_student |
+| assignments        |
+| students           |
+| teacher_meta       |
+| teachers           |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use books
+ERROR 1049 (42000): Unknown database 'books'
+mysql> use data5zero
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables
+    -> ;
++---------------------+
+| Tables_in_data5zero |
++---------------------+
+| book                |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from books
+    -> ;
+ERROR 1146 (42S02): Table 'data5zero.books' doesn't exist
+mysql> select * from book;
++---------+------------+-------------+-----------------------------------------------------+----------------------+
+| book_id | first_name | last_name   | title                                               | publisher            |
++---------+------------+-------------+-----------------------------------------------------+----------------------+
+|       1 | Isaac      | Asimov      | Foundation                                          | Random House         |
+|       2 | Pearl      | Buck        | The Good Earth                                      | Random House         |
+|       3 | Tom        | Clancy      | The Hunt For Red October                            | Berkley              |
+|       4 | Tom        | Clancy      | Patriot Games                                       | Simon & Schuster     |
+|       5 | Stephen    | King        | It                                                  | Random House         |
+|       6 | Stephen    | King        | Dead Zone                                           | Random House         |
+|       7 | Stephen    | King        | The Shining                                         | Penguin Random House |
+|       8 | John       | Le Carre    | Tinker, Tailor, Soldier, Spy: A George Smiley Novel | Berkley              |
+|       9 | Alex       | Michaelides | The Silent Patient                                  | Simon & Schuster     |
+|      10 | Carol      | Shaben      | Into The Abyss                                      | Simon & Schuster     |
++---------+------------+-------------+-----------------------------------------------------+----------------------+
+10 rows in set (0.00 sec)
+
+mysql>
